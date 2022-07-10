@@ -1,8 +1,5 @@
-from Pyro5.api import expose
-
 from produto import Produto
 
-@expose
 class Item():
     
     def __init__(self, produto: Produto, quantidade):
@@ -11,7 +8,7 @@ class Item():
 
     
     def sub_total(self):
-        return self.__produto.get_codigo() * self.__quantidade
+        return self.__produto.get_preco() * self.__quantidade
 
     # getters and setters...
     def get_produto(self):
