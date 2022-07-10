@@ -28,7 +28,7 @@ class LojaFJ(object):
     def entrar(self, nome):
         print(f"Cliente {nome} entrou na loja.")
 
-        carrinho = Carrinho()
+        carrinho = Carrinho(nome)
         self.clientes_na_loja[nome] = carrinho
         self._pyroDaemon.register(carrinho)
 
@@ -43,6 +43,7 @@ class LojaFJ(object):
         return self.produtos_loja
 
     def pagar(self, carrinho):
+        nome_cliente = carrinho.get_nome_cliente()
         recibo = []
         recibo.append("Data: " + time.asctime())
 
@@ -55,8 +56,10 @@ class LojaFJ(object):
         recibo.append("")
         recibo.append("%13s  %.2f" % ("total:", total))
 
+        print(f"Carrinho de {nome_cliente}: {carrinho.get_itens()}")
         carrinho.limpar()
 
+        print(f"{nome_cliente} realizou o pagamento dos itens.")
         return "\n".join(recibo)
 
     def sair(self, nome):

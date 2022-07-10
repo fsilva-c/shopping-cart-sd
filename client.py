@@ -1,7 +1,7 @@
 from Pyro5.api import Proxy
 import Pyro5
 
-porta = 53326
+porta = 50739
 lojaFJ = Proxy("PYRO:trabalhosd.lojaFJ@localhost:" + str(porta))
 
 ''' Novo cliente '''
